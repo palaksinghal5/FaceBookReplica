@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutterreplicaui/config/palette.dart';
 import 'package:flutterreplicaui/models/user_model.dart';
+import 'package:flutterreplicaui/widgets/widgets.dart';
 
 class Rooms extends StatelessWidget {
 
@@ -14,7 +16,7 @@ class Rooms extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 60.0,
-      color: Colors.orange,
+      color: Colors.white,
       child: ListView.builder(
         padding: const EdgeInsets.symmetric(
           vertical: 10.0, 
@@ -29,11 +31,13 @@ class Rooms extends StatelessWidget {
               child: _createRoomButton(),
             );
           }
-          return Container(
-            margin: const EdgeInsets.all(2.0),
-            height: 20.0,
-            width: 20.0,
-            color: Colors.red,
+          final User user = onlineUsers[index -1];
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0,),
+            child: ProfileAvatar(
+              imageUrl: user.imageUrl,
+              isActive: true,
+            ),
           );
         },
       ),
@@ -48,13 +52,28 @@ class _createRoomButton extends StatelessWidget {
     return OutlinedButton(
       onPressed: () => print('Create Room'),
       style: OutlinedButton.styleFrom(
-        backgroundColor: Colors.white,
-        borderRadius: BorderRadius.circular(30.0),
         side: BorderSide(color: Colors.blueAccent[100], width: 3.0),
-        
-          )
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+        //primary: Colors.white,
+        textStyle: TextStyle(
+          color: Palette.facebookBlue,
         ),
-      )
+      ),
+      child: Row(
+        children: [
+          ShaderMask(
+            shaderCallback: (rect) => Palette.createRoomGradient.createShader(rect),
+          child: Icon(
+            Icons.video_call, 
+            size: 35.0, 
+            color: Colors.white,
+            ),
+          ),
+          const SizedBox(width: 4.0,),
+          Text('Create\nRoom'),
+        ],
+      ),
     );
+      
   }
 }

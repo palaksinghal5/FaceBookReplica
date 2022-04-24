@@ -1,6 +1,6 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterreplicaui/models/models.dart';
+import 'package:flutterreplicaui/widgets/profile_avatar.dart';
 
 class CreatePostContainer extends StatelessWidget {
 
@@ -21,12 +21,7 @@ class CreatePostContainer extends StatelessWidget {
         children: [
           Row(
             children: [
-              CircleAvatar(
-                radius: 20.0,
-                backgroundColor: Colors.grey,
-                backgroundImage: 
-                  CachedNetworkImageProvider(currentUser.imageUrl),
-              ),
+              ProfileAvatar(imageUrl: currentUser.imageUrl),
               const SizedBox(width: 8.0),
               Expanded(
                 child: TextField(
