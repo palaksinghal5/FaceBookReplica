@@ -83,7 +83,7 @@ class _StoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
-        Positioned(child: child))
+        Positioned(child: child) )
       ],     
     );
   }
