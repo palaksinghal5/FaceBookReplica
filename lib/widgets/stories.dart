@@ -4,6 +4,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterreplicaui/config/palette.dart';
 import 'package:flutterreplicaui/models/models.dart';
+import 'package:flutterreplicaui/widgets/widgets.dart';
 
 class Stories extends StatelessWidget {
 
@@ -83,7 +84,26 @@ class _StoryCard extends StatelessWidget {
             borderRadius: BorderRadius.circular(12.0),
           ),
         ),
-        Positioned(child: child) )
+        Positioned(
+          top: 8.0,
+          left: 8.0,
+          child: isAddStory ? Container(height: 40.0, width: 40.0, decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+          ),
+          child: IconButton(
+            padding: EdgeInsets.zero,
+            icon: const Icon(Icons.add),
+            iconSize: 30.0,
+            color: Palette.facebookBlue,
+            onPressed: () => print('Add to Story'),
+            ),
+          )
+          : ProfileAvatar(
+            imageUrl: story.user.imageUrl,
+            hasBorder: !story.isViewed,
+            ),
+         ),
       ],     
     );
   }
